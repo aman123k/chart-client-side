@@ -8,7 +8,7 @@ const useRetrieveChart = (filters) => {
     try {
       const response = await fetch(
         // `http://localhost:8000/reciveChart?year=${end_year}&topics=${topics}&sector=${sector}&region=${region}&Source=${source}&SWOT=${swot}&PEST=${pest}&Country=${country}`
-        "http://localhost:8000/reciveChart"
+        "https://chart-server-side.onrender.com/reciveChart"
       );
       const json = await response.json();
       setChartData(json.data);
