@@ -3,18 +3,21 @@ import { useEffect, useState } from "react";
 const useRetrieveChart = (filters) => {
   const [chartData, setChartData] = useState([]);
   const [filterOption, setFilterOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const retrieveChart = async () => {
     try {
+      setLoading(true);
       const response = await fetch(
-        // `http://localhost:8000/reciveChart?year=${end_year}&topics=${topics}&sector=${sector}&region=${region}&Source=${source}&SWOT=${swot}&PEST=${pest}&Country=${country}`
         "https://chart-server-side.onrender.com/reciveChart"
       );
       const json = await response.json();
       setChartData(json.data);
       setFilterOptions(json.filter);
+      setLoading(false);
       return json;
     } catch (err) {
+      setLoading(false);
       console.log("Error while fetching chart", err);
     }
   };
@@ -23,6 +26,6 @@ const useRetrieveChart = (filters) => {
     retrieveChart();
   }, []);
 
-  return { chartData, filterOption };
+  return { chartData, filterOption, loading };
 };
 export default useRetrieveChart;

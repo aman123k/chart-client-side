@@ -7,7 +7,7 @@ import CountryAndTopicChart from "./CountryAndTopicChart";
 import Likelihood from "./Likelihood";
 
 function ChartContainer() {
-  const { chartData } = useRetrieveChart();
+  const { chartData, loading } = useRetrieveChart();
 
   const filterOptions = {
     sector: [...new Set(chartData?.map((item) => item.sector).filter(Boolean))],
@@ -23,7 +23,11 @@ function ChartContainer() {
     sources: [...new Set(chartData.map((item) => item.source).filter(Boolean))],
   };
 
-  return (
+  return loading ? (
+    <div className=" w-[100%] h-[100%] flex items-center justify-center">
+      <span class="loader"></span>
+    </div>
+  ) : (
     <section className=" w-[100%] h-[100%] overflow-scroll ">
       <header className=" py-4 px-6 border-b">
         <h1 className=" text-2xl font-roboto text-[#000000] font-semibold">
