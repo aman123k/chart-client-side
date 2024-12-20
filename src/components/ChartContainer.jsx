@@ -12,15 +12,21 @@ function ChartContainer() {
   const filterOptions = {
     sector: [...new Set(chartData?.map((item) => item.sector).filter(Boolean))],
     end_year: [
-      ...new Set(chartData.map((item) => item.end_year).filter(Boolean)),
+      ...new Set(chartData?.map((item) => item.end_year).filter(Boolean)),
     ],
-    pestles: [...new Set(chartData.map((item) => item.pestle).filter(Boolean))],
+    pestles: [
+      ...new Set(chartData?.map((item) => item.pestle).filter(Boolean)),
+    ],
     countries: [
       ...new Set(chartData.map((item) => item.country).filter(Boolean)),
     ],
-    topics: [...new Set(chartData.map((item) => item.topic).filter(Boolean))],
-    regions: [...new Set(chartData.map((item) => item.region).filter(Boolean))],
-    sources: [...new Set(chartData.map((item) => item.source).filter(Boolean))],
+    topics: [...new Set(chartData?.map((item) => item.topic).filter(Boolean))],
+    regions: [
+      ...new Set(chartData?.map((item) => item.region).filter(Boolean)),
+    ],
+    sources: [
+      ...new Set(chartData?.map((item) => item.source).filter(Boolean)),
+    ],
   };
 
   return loading ? (
