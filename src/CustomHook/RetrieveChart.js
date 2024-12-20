@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
-const useRetrieveChart = (filters) => {
+const useRetrieveChart = () => {
   const [chartData, setChartData] = useState([]);
-  const [filterOption, setFilterOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const retrieveChart = async () => {
@@ -13,7 +12,6 @@ const useRetrieveChart = (filters) => {
       );
       const json = await response.json();
       setChartData(json.data);
-      setFilterOptions(json.filter);
       setLoading(false);
       return json;
     } catch (err) {
@@ -26,6 +24,6 @@ const useRetrieveChart = (filters) => {
     retrieveChart();
   }, []);
 
-  return { chartData, filterOption, loading };
+  return { chartData, loading };
 };
 export default useRetrieveChart;
